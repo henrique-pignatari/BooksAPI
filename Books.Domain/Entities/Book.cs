@@ -13,9 +13,9 @@ namespace Books.Domain.Entities
         public string? Description { get; private set; }
         public int? TotalPages { get; private set; }
         public string? Image { get; private set; }
-        public DateTime? StartRead { get; private set; }
-        public DateTime? StopDate { get; private set; }
-        public DateTime? ConclusionDate { get; private set; }
+        public DateTime? ReadStartDate { get; private set; }
+        public DateTime? ReadStopDate { get; private set; }
+        public DateTime? ReadConclusionDate { get; private set; }
 
         public int PublisherId { get; private set; }
         public Publisher Publisher { get; private set; }
