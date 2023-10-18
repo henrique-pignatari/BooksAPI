@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Books.Domain.Validation;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,10 +21,20 @@ namespace Books.Domain.Entities
         public Publisher Publisher { get; private set; }
         public int CategoryId { get; private set; }
         public Category Category { get; private set; }
+        public ICollection<Genre> Genres { get; private set; }
+        public ICollection<BookAuthor> BookAuthors { get; private set; }
 
-        public Book(string title, string? description, int? TotalPages, string? Image) : base()
+        public Book(string title, string? description, int? totalPages, string? image) : base()
         {
+            BookValidation.ValidateTitle(title);
+            BookValidation.ValidateDescription(description);
+            BookValidation.ValidateTotalPages(totalPages);
+            BookValidation.ValidateImage(image);
 
+            Title = title;
+            Description = description;
+            TotalPages = totalPages;
+            Image = image;
         }
 
     }

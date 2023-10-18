@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Books.Domain.Validation
 {
-    public class BookValidation
+    public static class BookValidation
     {
         public static void ValidateTitle(string title)
         {
@@ -24,6 +24,23 @@ namespace Books.Domain.Validation
                 DomainException.When(string.IsNullOrWhiteSpace(description), BookErrorMessages.EmpityDescription);
                 DomainException.When(description.Length < 3, BookErrorMessages.ShortDescription);
                 DomainException.When(description.Length > 1000, BookErrorMessages.LongDescription);
+            }
+        }
+
+        public static void ValidateTotalPages(int? totalPages)
+        {
+            if(totalPages != null)
+            {
+                DomainException.When(totalPages == 0, BookErrorMessages.NegativeOrZeroPages);
+            }
+        }
+
+        public static void ValidateImage(string? image)
+        {
+            if (image != null)
+            {
+                DomainException.When(string.IsNullOrWhiteSpace(image), BookErrorMessages.EmptyImageName);
+                DomainException.When(image.Length > 250, BookErrorMessages.LongImageName);
             }
         }
     }
