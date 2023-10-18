@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Books.Domain.Validation;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,5 +11,11 @@ namespace Books.Domain.Entities
     {
         public string Name { get; private set; }
         public ICollection<Book> Books { get; private set; }
+
+        public Category(string name)
+        {
+            CategoryValidation.ValidateName(name);
+            Name = name;
+        }
     }
 }
