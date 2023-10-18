@@ -1,4 +1,5 @@
-﻿using Books.Domain.ErrorMessages;
+﻿using Books.Domain.Entities;
+using Books.Domain.ErrorMessages;
 using Books.Domain.Exceptions;
 using System;
 using System.Collections.Generic;
@@ -42,6 +43,22 @@ namespace Books.Domain.Validation
                 DomainException.When(string.IsNullOrWhiteSpace(image), BookErrorMessages.EmptyImageName);
                 DomainException.When(image.Length > 250, BookErrorMessages.LongImageName);
             }
+        }
+
+        public static void ValidatePublisherId(int publisherId)
+        {
+            DomainException.When(publisherId < 0, BookErrorMessages.NegativePublisherId);
+        }
+
+        public static void ValidateCategoryId(int categoryId)
+        {
+            DomainException.When(categoryId < 0, BookErrorMessages.NegativeCategoryId);
+        }
+        
+        public static void ValidateBookAuthors(ICollection<BookAuthor> bookAuthors)
+        {
+            DomainException.When(bookAuthors == null, BookErrorMessages.NullAuthorsArray);
+            DomainException.When(bookAuthors.Count < 1, BookErrorMessages.NoAuthorsProvided);
         }
     }
 }

@@ -20,5 +20,12 @@ namespace Books.Domain.ErrorMessages
         public const string LongImageName = "Invalid Image Name. Image Name is Too Long";
 
         public const string NegativeOrZeroPages = "Invalid Number of Pages. Number of Pages must be greater than zero.";
+
+        public const string NegativePublisherId = "Invalid Pusblisher Id. Publisher Id must be positive";
+
+        public const string NegativeCategoryId = "Invalid Category Id. Category Id mus be positive";
+
+        public const string NullAuthorsArray = "Invalid Authors. Authors is required";
+        public const string NoAuthorsProvided = "Invalid Authors. There must be at least one Author";
     }
 }
