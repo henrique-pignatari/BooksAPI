@@ -16,6 +16,7 @@ namespace Books.Domain.Entities
         public Entity()
         {
             CreateDate = DateTime.Now;
+            LastUpdateDate = DateTime.Now;
         }
 
         public Entity(int id) : this()
