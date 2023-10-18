@@ -1,4 +1,5 @@
-﻿using Books.Domain.ErrorMessages;
+﻿using Books.Domain.Entities;
+using Books.Domain.ErrorMessages;
 using Books.Domain.Exceptions;
 using System;
 using System.Collections.Generic;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Books.Domain.Validation
 {
-    public class BookValidation
+    public static class BookValidation
     {
         public static void ValidateTitle(string title)
         {
@@ -25,6 +26,39 @@ namespace Books.Domain.Validation
                 DomainException.When(description.Length < 3, BookErrorMessages.ShortDescription);
                 DomainException.When(description.Length > 1000, BookErrorMessages.LongDescription);
             }
+        }
+
+        public static void ValidateTotalPages(int? totalPages)
+        {
+            if(totalPages != null)
+            {
+                DomainException.When(totalPages == 0, BookErrorMessages.NegativeOrZeroPages);
+            }
+        }
+
+        public static void ValidateImage(string? image)
+        {
+            if (image != null)
+            {
+                DomainException.When(string.IsNullOrWhiteSpace(image), BookErrorMessages.EmptyImageName);
+                DomainException.When(image.Length > 250, BookErrorMessages.LongImageName);
+            }
+        }
+
+        public static void ValidatePublisherId(int publisherId)
+        {
+            DomainException.When(publisherId < 0, BookErrorMessages.NegativePublisherId);
+        }
+
+        public static void ValidateCategoryId(int categoryId)
+        {
+            DomainException.When(categoryId < 0, BookErrorMessages.NegativeCategoryId);
+        }
+        
+        public static void ValidateBookAuthors(ICollection<BookAuthor> bookAuthors)
+        {
+            DomainException.When(bookAuthors == null, BookErrorMessages.NullAuthorsArray);
+            DomainException.When(bookAuthors.Count < 1, BookErrorMessages.NoAuthorsProvided);
         }
     }
 }

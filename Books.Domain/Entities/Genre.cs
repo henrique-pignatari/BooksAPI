@@ -7,14 +7,14 @@ using System.Threading.Tasks;
 
 namespace Books.Domain.Entities
 {
-    public class Category : Entity
+    public class Genre : Entity
     {
         public string Name { get; private set; }
         public ICollection<Book> Books { get; private set; }
 
-        public Category(string name)
+        public Genre(string name)
         {
-            CategoryValidation.ValidateName(name);
+            GenreValidation.ValidateName(name);
             Name = name;
         }
     }
