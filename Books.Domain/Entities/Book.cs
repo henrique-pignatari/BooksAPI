@@ -26,15 +26,16 @@ namespace Books.Domain.Entities
         public Publisher Publisher { get; private set; }
         public int CategoryId { get; private set; }
         public Category Category { get; private set; }
-        public ICollection<Genre> Genres { get; private set; }
+        public ICollection<BookGenre> BooksGenres { get; private set; }
         public ICollection<BookAuthor> BookAuthors { get; private set; }
 
-        public Book(string title, int publisherId, int categoryId, ICollection<BookAuthor> authors)
-            : this(title, publisherId, categoryId, authors, null, null, null) { }
+        public Book(string title, int publisherId, int categoryId, ICollection<BookAuthor> authors, ICollection<BookGenre> genres)
+            : this(title, publisherId, categoryId, authors, genres, null, null, null) { }
 
-        public Book(string title, int publisherId, int categoryId, ICollection<BookAuthor> authors, string? description, int? totalPages, string? image) : base()
+        public Book(string title, int publisherId, int categoryId, ICollection<BookAuthor> authors, ICollection<BookGenre> genres, string? description, int? totalPages, string? image)
+            : base()
         {
-            ValidateDomain(title, publisherId, categoryId, authors, description, totalPages, image);
+            ValidateDomain(title, publisherId, categoryId, authors, genres, description, totalPages, image);
 
             Title = title;
             Description = description;
@@ -44,9 +45,10 @@ namespace Books.Domain.Entities
             PublisherId = publisherId;
             CategoryId = categoryId;
             BookAuthors = authors;
+            BooksGenres = genres;
         }
 
-        private void ValidateDomain(string title, int publisherId, int categoryId, ICollection<BookAuthor> authors, string? description, int? totalPages, string? image)
+        private void ValidateDomain(string title, int publisherId, int categoryId, ICollection<BookAuthor> authors, ICollection<BookGenre> genres, string? description, int? totalPages, string? image)
         {
             BookValidation.ValidateTitle(title);
             BookValidation.ValidateDescription(description);
@@ -55,6 +57,7 @@ namespace Books.Domain.Entities
             BookValidation.ValidatePublisherId(publisherId);
             BookValidation.ValidateCategoryId(categoryId);
             BookValidation.ValidateBookAuthors(authors);
+            BookValidation.ValidateBookGenres(genres);
         }
 
         public void StartReading()

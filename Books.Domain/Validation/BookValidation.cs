@@ -60,5 +60,11 @@ namespace Books.Domain.Validation
             DomainException.When(bookAuthors == null, BookErrorMessages.NullAuthorsArray);
             DomainException.When(bookAuthors.Count < 1, BookErrorMessages.NoAuthorsProvided);
         }
+
+        public static void ValidateBookGenres(ICollection<BookGenre> bookGenres)
+        {
+            DomainException.When(bookGenres == null, BookErrorMessages.NullGenresArray);
+            DomainException.When(bookGenres.Count < 1, BookErrorMessages.NoGenresProvided);
+        }
     }
 }

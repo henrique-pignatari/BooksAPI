@@ -27,5 +27,8 @@ namespace Books.Domain.ErrorMessages
 
         public const string NullAuthorsArray = "Invalid Authors. Authors is required";
         public const string NoAuthorsProvided = "Invalid Authors. There must be at least one Author";
+
+        public const string NullGenresArray = "Invalid Genres. Genres is required";
+        public const string NoGenresProvided = "Invalid Genres. There must be at least one Author";
     }
 }

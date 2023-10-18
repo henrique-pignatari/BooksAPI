@@ -10,7 +10,7 @@ namespace Books.Domain.Entities
     public class Genre : Entity
     {
         public string Name { get; private set; }
-        public ICollection<Book> Books { get; private set; }
+        public ICollection<BookGenre> Books { get; private set; }
 
         public Genre(string name)
         {
