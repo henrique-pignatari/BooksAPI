@@ -2,9 +2,12 @@
 using Books.Domain.Validation;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace Books.Domain.Entities
 {
@@ -31,13 +34,7 @@ namespace Books.Domain.Entities
 
         public Book(string title, int publisherId, int categoryId, ICollection<BookAuthor> authors, string? description, int? totalPages, string? image) : base()
         {
-            BookValidation.ValidateTitle(title);
-            BookValidation.ValidateDescription(description);
-            BookValidation.ValidateTotalPages(totalPages);
-            BookValidation.ValidateImage(image);
-            BookValidation.ValidatePublisherId(publisherId);
-            BookValidation.ValidateCategoryId(categoryId);
-            BookValidation.ValidateBookAuthors(authors);
+            ValidateDomain(title, publisherId, categoryId, authors, description, totalPages, image);
 
             Title = title;
             Description = description;
@@ -47,6 +44,52 @@ namespace Books.Domain.Entities
             PublisherId = publisherId;
             CategoryId = categoryId;
             BookAuthors = authors;
+        }
+
+        private void ValidateDomain(string title, int publisherId, int categoryId, ICollection<BookAuthor> authors, string? description, int? totalPages, string? image)
+        {
+            BookValidation.ValidateTitle(title);
+            BookValidation.ValidateDescription(description);
+            BookValidation.ValidateTotalPages(totalPages);
+            BookValidation.ValidateImage(image);
+            BookValidation.ValidatePublisherId(publisherId);
+            BookValidation.ValidateCategoryId(categoryId);
+            BookValidation.ValidateBookAuthors(authors);
+        }
+
+        public void StartReading()
+        {
+            ReadStatus = ReadStatus.InProgress;
+            ReadStartDate = DateTime.UtcNow;
+            ReadStopDate = null;
+            ReadConclusionDate = null;
+        }
+
+        public void StopReading()
+        {
+            ReadStatus = ReadStatus.Pending;
+            ReadStopDate = DateTime.UtcNow;
+            ReadConclusionDate = null;
+        }
+
+        public void PartialRestartReading()
+        {
+            ReadStatus = ReadStatus.InProgress;
+            ReadStopDate = null;
+        }
+
+        public void FullRestartReading()
+        {
+            ReadStatus = ReadStatus.InProgress;
+            ReadStartDate = DateTime.Now;
+            ReadStopDate = null;
+        }
+
+        public void ConcludeReading()
+        {
+            ReadStatus = ReadStatus.Finished;
+            ReadConclusionDate = DateTime.UtcNow;
+            ReadStopDate = null;
         }
     }
 }
