@@ -17,5 +17,11 @@ namespace Books.Domain.Entities
             GenreValidation.ValidateName(name);
             Name = name;
         }
+
+        public void Update(string name)
+        {
+            GenreValidation.ValidateName(name);
+            Name = name;
+        }
     }
 }
