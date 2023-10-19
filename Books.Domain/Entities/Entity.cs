@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Books.Domain.Exceptions;
+using Books.Domain.Validation;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -21,6 +23,7 @@ namespace Books.Domain.Entities
 
         public Entity(int id) : this()
         {
+            EntityValidation.ValidateId(id);
             Id = id;
         }
     }
