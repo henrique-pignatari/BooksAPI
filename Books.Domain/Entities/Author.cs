@@ -17,11 +17,5 @@ namespace Books.Domain.Entities
             AuthorValidation.ValidateName(name);
             Name = name;
         }
-
-        public void Update(string name)
-        {
-            AuthorValidation.ValidateName(name);
-            Name = name;
-        }
     }
 }
