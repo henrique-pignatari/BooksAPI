@@ -94,5 +94,20 @@ namespace Books.Domain.Entities
             ReadConclusionDate = DateTime.UtcNow;
             ReadStopDate = null;
         }
+
+        public void Update(string title, int publisherId, int categoryId, ICollection<BookAuthor> authors, ICollection<BookGenre> genres, string? description, int? totalPages, string? image)
+        {
+            ValidateDomain(title, publisherId, categoryId, authors, genres, description, totalPages, image);
+
+            Title = title;
+            Description = description;
+            TotalPages = totalPages;
+            Image = image;
+            ReadStatus = ReadStatus.Pending;
+            PublisherId = publisherId;
+            CategoryId = categoryId;
+            BookAuthors = authors;
+            BooksGenres = genres;
+        }
     }
 }
