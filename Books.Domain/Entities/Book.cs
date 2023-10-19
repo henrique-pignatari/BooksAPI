@@ -103,7 +103,6 @@ namespace Books.Domain.Entities
             Description = description;
             TotalPages = totalPages;
             Image = image;
-            ReadStatus = ReadStatus.Pending;
             PublisherId = publisherId;
             CategoryId = categoryId;
             BookAuthors = authors;
