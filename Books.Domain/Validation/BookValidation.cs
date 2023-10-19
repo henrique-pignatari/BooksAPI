@@ -13,7 +13,7 @@ namespace Books.Domain.Validation
     {
         public static void ValidateTitle(string title)
         {
-            DomainException.When(string.IsNullOrWhiteSpace(title), BookErrorMessages.NullOrEmpityTitle);
+            DomainException.When(string.IsNullOrWhiteSpace(title), BookErrorMessages.NullOrEmptyTitle);
             DomainException.When(title.Length < 3, BookErrorMessages.ShortTitle);
             DomainException.When(title.Length > 250, BookErrorMessages.LongTitle);
         }
