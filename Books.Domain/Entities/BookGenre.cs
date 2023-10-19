@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Books.Domain.Validation;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,7 +11,16 @@ namespace Books.Domain.Entities
     {
         public int BookId { get; set; }
         public Book Book { get; set; }
-        public int GernreId { get; set; }
+        public int GenreId { get; set; }
         public Genre Genre { get; set; }
+
+        public BookGenre(int bookId, int genreId)
+        {
+            BookGenreValidation.ValidateBookId(bookId);
+            BookGenreValidation.ValidateGenreId(genreId);
+
+            BookId = bookId;
+            GenreId = genreId; 
+        }
     }
 }
