@@ -1,0 +1,24 @@
+version: '3.4'
+
+services:
+  booksdb:
+    image: postgres
+  
+  pgadmin:
+    image: dpage/pgadmin4
+
+  books.api:
+    image: ${DOCKER_REGISTRY-}booksapi
+    container_name: books.api
+    build:
+      context: .
+      dockerfile: Books.API/Dockerfile
+    depends_on:
+      - booksdb
+    ports:
+      - "5000:80"
+    restart: always
+
+volumes:
+  books_data:
+  pgadmin_data:

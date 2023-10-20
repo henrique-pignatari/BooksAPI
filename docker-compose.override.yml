@@ -1,0 +1,31 @@
+version: '3.4'
+
+services:
+  books.api:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    volumes:
+      - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
+      - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
+  
+  booksdb:
+    container_name: booksdb
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=senha123
+      - POSTGRES_DB=BooksDb
+    volumes:
+      - books_data:/var/lib/postgresql/data/ 
+
+  pgadmin:
+    container_name: pgadmin
+    restart: always
+    ports:
+      - "5050:80"
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=admin@email.com
+      - PGADMIN_DEFAULT_PASSWORD=senha123
+    volumes:
+      - pgadmin_data:/var/lib/pgadmin

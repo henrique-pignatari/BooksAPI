@@ -3,15 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.7.34018.315
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Books.API", "Books.API\Books.API.csproj", "{BBE0716B-1F6C-495D-9F63-30179EB15289}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Books.API", "Books.API\Books.API.csproj", "{BBE0716B-1F6C-495D-9F63-30179EB15289}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Books.Domain", "Books.Domain\Books.Domain.csproj", "{E586F334-95EA-41D5-B732-B5D61C55CA96}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Books.Domain", "Books.Domain\Books.Domain.csproj", "{E586F334-95EA-41D5-B732-B5D61C55CA96}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Books.Application", "Books.Application\Books.Application.csproj", "{F35283B2-3750-4932-8384-5093DDA14E41}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Books.Application", "Books.Application\Books.Application.csproj", "{F35283B2-3750-4932-8384-5093DDA14E41}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Books.Infra.Data", "Books.Infra.Data\Books.Infra.Data.csproj", "{C833EB86-C713-4799-96CF-C6480EBDD899}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Books.Infra.Data", "Books.Infra.Data\Books.Infra.Data.csproj", "{C833EB86-C713-4799-96CF-C6480EBDD899}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Books.Infra.IoC", "Books.Infra.IoC\Books.Infra.IoC.csproj", "{CCCD7DC0-8ACF-4E25-B2C9-815EFE9C010F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Books.Infra.IoC", "Books.Infra.IoC\Books.Infra.IoC.csproj", "{CCCD7DC0-8ACF-4E25-B2C9-815EFE9C010F}"
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{55AA9DD9-BD27-44C0-9CAA-09D0D97DF4AF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{CCCD7DC0-8ACF-4E25-B2C9-815EFE9C010F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CCCD7DC0-8ACF-4E25-B2C9-815EFE9C010F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CCCD7DC0-8ACF-4E25-B2C9-815EFE9C010F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{55AA9DD9-BD27-44C0-9CAA-09D0D97DF4AF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{55AA9DD9-BD27-44C0-9CAA-09D0D97DF4AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{55AA9DD9-BD27-44C0-9CAA-09D0D97DF4AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{55AA9DD9-BD27-44C0-9CAA-09D0D97DF4AF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
