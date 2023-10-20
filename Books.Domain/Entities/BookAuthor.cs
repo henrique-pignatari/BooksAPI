@@ -7,8 +7,9 @@ using System.Threading.Tasks;
 
 namespace Books.Domain.Entities
 {
-    public class BookAuthor : Entity
+    public class BookAuthor
     {
+        public int Id { get;  private set; }
         public int BookId { get; private set; }
         public Book Book { get; private set; }
         public int AuthorId { get; set; }

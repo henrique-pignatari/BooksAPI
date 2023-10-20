@@ -31,13 +31,13 @@ namespace Books.Domain.Entities
         public ICollection<Author> Authors { get; private set; }
         public ICollection<BookAuthor> BookAuthors { get; private set; }
 
-        public Book(string title, int publisherId, int categoryId, ICollection<BookAuthor> authors, ICollection<BookGenre> genres)
-            : this(title, publisherId, categoryId, authors, genres, null, null, null) { }
+        public Book(string title, int publisherId, int categoryId)
+            : this(title, publisherId, categoryId, null, null, null) { }
 
-        public Book(string title, int publisherId, int categoryId, ICollection<BookAuthor> authors, ICollection<BookGenre> genres, string? description, int? totalPages, string? image)
+        public Book(string title, int publisherId, int categoryId, string? description, int? totalPages, string? image)
             : base()
         {
-            ValidateDomain(title, publisherId, categoryId, authors, genres, description, totalPages, image);
+            ValidateDomain(title, publisherId, categoryId, description, totalPages, image);
 
             Title = title;
             Description = description;
@@ -46,11 +46,9 @@ namespace Books.Domain.Entities
             ReadStatus = ReadStatus.Pending;
             PublisherId = publisherId;
             CategoryId = categoryId;
-            BookAuthors = authors;
-            BooksGenres = genres;
         }
 
-        private void ValidateDomain(string title, int publisherId, int categoryId, ICollection<BookAuthor> authors, ICollection<BookGenre> genres, string? description, int? totalPages, string? image)
+        private void ValidateDomain(string title, int publisherId, int categoryId, string? description, int? totalPages, string? image)
         {
             BookValidation.ValidateTitle(title);
             BookValidation.ValidateDescription(description);
@@ -58,8 +56,6 @@ namespace Books.Domain.Entities
             BookValidation.ValidateImage(image);
             BookValidation.ValidatePublisherId(publisherId);
             BookValidation.ValidateCategoryId(categoryId);
-            BookValidation.ValidateBookAuthors(authors);
-            BookValidation.ValidateBookGenres(genres);
         }
 
         public void StartReading()
@@ -99,7 +95,9 @@ namespace Books.Domain.Entities
 
         public void Update(string title, int publisherId, int categoryId, ICollection<BookAuthor> authors, ICollection<BookGenre> genres, string? description, int? totalPages, string? image)
         {
-            ValidateDomain(title, publisherId, categoryId, authors, genres, description, totalPages, image);
+            ValidateDomain(title, publisherId, categoryId, description, totalPages, image);
+            BookValidation.ValidateBookAuthors(authors);
+            BookValidation.ValidateBookGenres(genres);
 
             Title = title;
             Description = description;
