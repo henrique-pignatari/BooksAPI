@@ -10,7 +10,8 @@ namespace Books.Domain.Entities
     public class Author : Entity
     {
         public string Name { get; set; }
-        public ICollection<BookAuthor> BookAuthors { get; set; }
+        public ICollection<Book> Books { get; private set; }
+        public ICollection<BookAuthor> BookAuthors { get; private set; }
 
         public Author(string name) : base()
         {

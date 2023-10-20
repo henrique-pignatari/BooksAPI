@@ -26,7 +26,9 @@ namespace Books.Domain.Entities
         public Publisher Publisher { get; private set; }
         public int CategoryId { get; private set; }
         public Category Category { get; private set; }
+        public ICollection<Genre> Genres { get; private set; }
         public ICollection<BookGenre> BooksGenres { get; private set; }
+        public ICollection<Author> Authors { get; private set; }
         public ICollection<BookAuthor> BookAuthors { get; private set; }
 
         public Book(string title, int publisherId, int categoryId, ICollection<BookAuthor> authors, ICollection<BookGenre> genres)
