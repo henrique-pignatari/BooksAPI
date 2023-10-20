@@ -1,4 +1,5 @@
-﻿using Books.Domain.ErrorMessages;
+﻿using Books.Domain.Constraints;
+using Books.Domain.ErrorMessages;
 using Books.Domain.Exceptions;
 using System;
 using System.Collections.Generic;
@@ -14,8 +15,8 @@ namespace Books.Domain.Validation
         public static void ValidateName(string name)
         {
             DomainException.When(string.IsNullOrWhiteSpace(name), PublisherErrorMessages.NullOrEmptyName);
-            DomainException.When(name.Length < 3, PublisherErrorMessages.ShortName);
-            DomainException.When(name.Length > 100, PublisherErrorMessages.LongName);
+            DomainException.When(name.Length < PublisherConstraints.MinNameLength, PublisherErrorMessages.ShortName);
+            DomainException.When(name.Length > PublisherConstraints.MaxNameLength, PublisherErrorMessages.LongName);
         }
 
         public static void ValidateLogo(string logo)
@@ -23,7 +24,7 @@ namespace Books.Domain.Validation
             if (logo != null)
             {
                 DomainException.When(string.IsNullOrWhiteSpace(logo), PublisherErrorMessages.EmptyLogoName);
-                DomainException.When(logo.Length > 250, PublisherErrorMessages.LongLogoName);
+                DomainException.When(logo.Length > PublisherConstraints.MaxLogoLength, PublisherErrorMessages.LongLogoName);
             }
         }
     }

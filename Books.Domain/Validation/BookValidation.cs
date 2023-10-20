@@ -1,4 +1,5 @@
-﻿using Books.Domain.Entities;
+﻿using Books.Domain.Constraints;
+using Books.Domain.Entities;
 using Books.Domain.ErrorMessages;
 using Books.Domain.Exceptions;
 using System;
@@ -14,8 +15,8 @@ namespace Books.Domain.Validation
         public static void ValidateTitle(string title)
         {
             DomainException.When(string.IsNullOrWhiteSpace(title), BookErrorMessages.NullOrEmptyTitle);
-            DomainException.When(title.Length < 3, BookErrorMessages.ShortTitle);
-            DomainException.When(title.Length > 250, BookErrorMessages.LongTitle);
+            DomainException.When(title.Length < BookConstraints.MinTitleLength, BookErrorMessages.ShortTitle);
+            DomainException.When(title.Length > BookConstraints.MaxTitleLength, BookErrorMessages.LongTitle);
         }
 
         public static void ValidateDescription(string? description)
@@ -23,8 +24,8 @@ namespace Books.Domain.Validation
             if (description != null)
             {
                 DomainException.When(string.IsNullOrWhiteSpace(description), BookErrorMessages.EmpityDescription);
-                DomainException.When(description.Length < 3, BookErrorMessages.ShortDescription);
-                DomainException.When(description.Length > 1000, BookErrorMessages.LongDescription);
+                DomainException.When(description.Length < BookConstraints.MinDescriptionLength, BookErrorMessages.ShortDescription);
+                DomainException.When(description.Length > BookConstraints.MaxDescriptionLength, BookErrorMessages.LongDescription);
             }
         }
 
@@ -32,7 +33,7 @@ namespace Books.Domain.Validation
         {
             if(totalPages != null)
             {
-                DomainException.When(totalPages == 0, BookErrorMessages.NegativeOrZeroPages);
+                DomainException.When(totalPages == BookConstraints.MinTotalPages, BookErrorMessages.NegativeOrZeroPages);
             }
         }
 
@@ -41,7 +42,7 @@ namespace Books.Domain.Validation
             if (image != null)
             {
                 DomainException.When(string.IsNullOrWhiteSpace(image), BookErrorMessages.EmptyImageName);
-                DomainException.When(image.Length > 250, BookErrorMessages.LongImageName);
+                DomainException.When(image.Length > BookConstraints.MaxImageLength, BookErrorMessages.LongImageName);
             }
         }
 
