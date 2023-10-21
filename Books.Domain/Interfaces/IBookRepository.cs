@@ -9,8 +9,8 @@ namespace Books.Domain.Interfaces
 {
     public interface IBookRepository : INamedEntityRepository<Book>
     {
-        Task<IEnumerable<Book>> GetByAuthorAsync(int authotId, int? quantity, int? page);
-        Task<IEnumerable<Book>> GetByGenreAsync(int genreId, int? quantity, int? page);
-        Task<IEnumerable<Book>> GetByCategoryAsync(int categoryId, int? quantity, int? page);
+        Task<IEnumerable<Book>> GetByAuthorAsync(int authorId, int quantity, int offset);
+        Task<IEnumerable<Book>> GetByGenreAsync(int genreId, int quantity, int offset);
+        Task<IEnumerable<Book>> GetByCategoryAsync(int categoryId, int quantity, int offset);
     }
 }

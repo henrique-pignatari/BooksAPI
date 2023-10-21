@@ -8,6 +8,6 @@ namespace Books.Domain.Interfaces
 {
     public interface INamedEntityRepository<T> : IRepository<T>
     {
-        Task<IEnumerable<T>> GetByNameAsync(string name, int? quantity, int? page);
+        public Task<IEnumerable<T>> GetByNameAsync(string name, int quantity, int offset);
     }
 }
