@@ -8,8 +8,8 @@ namespace Books.Domain.Constraints
 {
     public class BookConstraints
     {
-        public const int MinTitleLength = 3;
-        public const int MaxTitleLength = 250;
+        public const int MinNameLength = 3;
+        public const int MaxNameLength = 250;
 
         public const int MinDescriptionLength = 3;
         public const int MaxDescriptionLength = 250;

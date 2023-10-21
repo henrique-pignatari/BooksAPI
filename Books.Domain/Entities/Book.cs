@@ -13,7 +13,7 @@ namespace Books.Domain.Entities
 {
     public class Book : Entity
     {
-        public string Title { get; private set; }
+        public string Name { get; private set; }
         public string? Description { get; private set; }
         public int? TotalPages { get; private set; }
         public string? Image { get; private set; }
@@ -31,15 +31,15 @@ namespace Books.Domain.Entities
         public ICollection<Author> Authors { get; private set; }
         public ICollection<BookAuthor> BookAuthors { get; private set; }
 
-        public Book(string title, int publisherId, int categoryId)
-            : this(title, publisherId, categoryId, null, null, null) { }
+        public Book(string name, int publisherId, int categoryId)
+            : this(name, publisherId, categoryId, null, null, null) { }
 
-        public Book(string title, int publisherId, int categoryId, string? description, int? totalPages, string? image)
+        public Book(string name, int publisherId, int categoryId, string? description, int? totalPages, string? image)
             : base()
         {
-            ValidateDomain(title, publisherId, categoryId, description, totalPages, image);
+            ValidateDomain(name, publisherId, categoryId, description, totalPages, image);
 
-            Title = title;
+            Name = name;
             Description = description;
             TotalPages = totalPages;
             Image = image;
@@ -48,9 +48,9 @@ namespace Books.Domain.Entities
             CategoryId = categoryId;
         }
 
-        private void ValidateDomain(string title, int publisherId, int categoryId, string? description, int? totalPages, string? image)
+        private void ValidateDomain(string name, int publisherId, int categoryId, string? description, int? totalPages, string? image)
         {
-            BookValidation.ValidateTitle(title);
+            BookValidation.ValidateName(name);
             BookValidation.ValidateDescription(description);
             BookValidation.ValidateTotalPages(totalPages);
             BookValidation.ValidateImage(image);
@@ -93,13 +93,13 @@ namespace Books.Domain.Entities
             ReadStopDate = null;
         }
 
-        public void Update(string title, int publisherId, int categoryId, ICollection<BookAuthor> authors, ICollection<BookGenre> genres, string? description, int? totalPages, string? image)
+        public void Update(string name, int publisherId, int categoryId, ICollection<BookAuthor> authors, ICollection<BookGenre> genres, string? description, int? totalPages, string? image)
         {
-            ValidateDomain(title, publisherId, categoryId, description, totalPages, image);
+            ValidateDomain(name, publisherId, categoryId, description, totalPages, image);
             BookValidation.ValidateBookAuthors(authors);
             BookValidation.ValidateBookGenres(genres);
 
-            Title = title;
+            Name = name;
             Description = description;
             TotalPages = totalPages;
             Image = image;

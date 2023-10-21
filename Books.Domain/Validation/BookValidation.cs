@@ -12,11 +12,11 @@ namespace Books.Domain.Validation
 {
     public static class BookValidation
     {
-        public static void ValidateTitle(string title)
+        public static void ValidateName(string name)
         {
-            DomainException.When(string.IsNullOrWhiteSpace(title), BookErrorMessages.NullOrEmptyTitle);
-            DomainException.When(title.Length < BookConstraints.MinTitleLength, BookErrorMessages.ShortTitle);
-            DomainException.When(title.Length > BookConstraints.MaxTitleLength, BookErrorMessages.LongTitle);
+            DomainException.When(string.IsNullOrWhiteSpace(name), BookErrorMessages.NullOrEmptyName);
+            DomainException.When(name.Length < BookConstraints.MinNameLength, BookErrorMessages.ShortName);
+            DomainException.When(name.Length > BookConstraints.MaxNameLength, BookErrorMessages.LongName);
         }
 
         public static void ValidateDescription(string? description)

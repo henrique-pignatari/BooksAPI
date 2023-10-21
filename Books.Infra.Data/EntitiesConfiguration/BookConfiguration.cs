@@ -16,7 +16,7 @@ namespace Books.Infra.Data.EntitiesConfiguration
         {
             builder.HasKey(b => b.Id);
             
-            builder.Property(b => b.Title)
+            builder.Property(b => b.Name)
                 .HasMaxLength(BookConstraints.MaxTitleLength)
                 .IsRequired();
 

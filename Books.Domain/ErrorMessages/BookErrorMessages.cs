@@ -8,9 +8,9 @@ namespace Books.Domain.ErrorMessages
 {
     public class BookErrorMessages
     {
-        public const string NullOrEmptyTitle = "Invalid Title. Title is required.";
-        public const string ShortTitle = "Invalid Title. Title is too short.";
-        public const string LongTitle = "Invalid Title. Title is too long.";
+        public const string NullOrEmptyName = "Invalid Name. Name is required.";
+        public const string ShortName = "Invalid Name. Name is too short.";
+        public const string LongName = "Invalid Name. Name is too long.";
         
         public const string EmpityDescription = "Invalid Description. Description can't be empty.";
         public const string ShortDescription = "Invalid Description. Description is too short.";
