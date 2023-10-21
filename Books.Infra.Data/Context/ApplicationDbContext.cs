@@ -16,7 +16,7 @@ namespace Books.Infra.Data.Context
         public DbSet<Author> Authors { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<Genre> Genres { get; set; }
-        public DbSet<Publisher> Publisher { get; set; }
+        public DbSet<Publisher> Publishers { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
