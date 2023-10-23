@@ -1,6 +1,7 @@
 ﻿using Books.Domain.Interfaces;
 using Books.Infra.Data.Context;
 using Books.Infra.Data.Repositories;
+using HashidsNet;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -23,6 +24,8 @@ namespace Books.Infra.IoC
                     builder => builder.MigrationsAssembly(typeof(ApplicationDbContext).Assembly.FullName)
                 )
             );
+
+            services.AddSingleton<IHashids>(_ => new Hashids("MENSAGEM QUE DEVE IR PARA OUTRO LOCAL"));
 
             services.AddScoped<IAuthorRepository, AuthorRepository>();
             services.AddScoped<IBookRepository, BookRepository>();
