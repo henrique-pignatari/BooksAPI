@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Books.Domain.Interfaces
 {
-    public interface IBookRepository : INamedEntityRepository<Book>
+    public interface IBookRepository : IRepository<Book>
     {
         Task<IEnumerable<Book>> GetByAuthorAsync(int authorId, int quantity, int offset);
         Task<IEnumerable<Book>> GetByGenreAsync(int genreId, int quantity, int offset);
