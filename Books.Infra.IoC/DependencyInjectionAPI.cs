@@ -1,4 +1,5 @@
-﻿using Books.Domain.Interfaces;
+﻿using Books.Application.Mappings;
+using Books.Domain.Interfaces;
 using Books.Infra.Data.Context;
 using Books.Infra.Data.Repositories;
 using HashidsNet;
@@ -26,6 +27,8 @@ namespace Books.Infra.IoC
             );
 
             services.AddSingleton<IHashids>(_ => new Hashids("MENSAGEM QUE DEVE IR PARA OUTRO LOCAL"));
+
+            services.AddAutoMapper(typeof(DomainToDTOMappingProfile));
 
             services.AddScoped<IAuthorRepository, AuthorRepository>();
             services.AddScoped<IBookRepository, BookRepository>();
