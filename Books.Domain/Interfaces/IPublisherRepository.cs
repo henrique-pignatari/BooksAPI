@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Books.Domain.Interfaces
 {
-    public interface IPublisherRepository : IRepository<Publisher>
+    public interface IPublisherRepository : INamedEntityRepository<Publisher>
     {
     }
 }
