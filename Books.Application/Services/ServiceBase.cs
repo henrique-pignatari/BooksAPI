@@ -9,12 +9,12 @@ using System.Threading.Tasks;
 
 namespace Books.Application.Services
 {
-    public class ServiceBase<T, SendDTO, ReceiveDTO> : IService<SendDTO, ReceiveDTO>
+    public class ServiceBase<T, R, SendDTO, ReceiveDTO> : IService<SendDTO, ReceiveDTO> where R : INamedEntityRepository<T>
     {
-        IRepository<T> _repository;
-        IMapper _mapper;
+        protected R _repository;
+        protected IMapper _mapper;
 
-        public ServiceBase(IRepository<T> repository, IMapper mapper)
+        public ServiceBase(R repository, IMapper mapper)
         {
             _repository = repository;
             _mapper = mapper;
@@ -53,12 +53,16 @@ namespace Books.Application.Services
 
         public async Task RemoveAsync(ReceiveDTO dto)
         {
-            throw new NotImplementedException();
+            var entity = _mapper.Map<T>(dto);
+
+            await _repository.RemoveAsync(entity);
         }
 
         public async Task UpdateAsync(ReceiveDTO dto)
         {
-            throw new NotImplementedException();
+            var entity = _mapper.Map<T>(dto);
+
+            await _repository.UpdateAsync(entity);
         }
     }
 }
