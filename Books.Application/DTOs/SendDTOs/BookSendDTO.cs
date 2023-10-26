@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace Books.Application.DTOs.SendDTOs
 {
-    public class BooksSendDTO
+    public class BookSendDTO
     {
         [Required]
         [DisplayName("Id")]
