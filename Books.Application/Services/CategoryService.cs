@@ -4,6 +4,7 @@ using Books.Application.DTOs.SendDTOs;
 using Books.Application.Interfaces;
 using Books.Domain.Entities;
 using Books.Domain.Interfaces;
+using HashidsNet;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,7 +15,7 @@ namespace Books.Application.Services
 {
     public class CategoryService : ServiceBase<Category, ICategoryRepository, CategorySendDTO, CategoryReceiveDTO>, ICategoryService
     {
-        public CategoryService(ICategoryRepository repository, IMapper mapper) : base(repository, mapper)
+        public CategoryService(ICategoryRepository repository, IMapper mapper, IHashids hashIds) : base(repository, mapper, hashIds)
         {
         }
     }

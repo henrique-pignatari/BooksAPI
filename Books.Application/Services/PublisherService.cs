@@ -4,6 +4,7 @@ using Books.Application.DTOs.SendDTOs;
 using Books.Application.Interfaces;
 using Books.Domain.Entities;
 using Books.Domain.Interfaces;
+using HashidsNet;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,7 +15,7 @@ namespace Books.Application.Services
 {
     public class PublisherService : ServiceBase<Publisher, IPublisherRepository, PublisherSendDTO, PublisherReceiveDTO>, IPublisherService
     {
-        public PublisherService(IPublisherRepository repository, IMapper mapper) : base(repository, mapper)
+        public PublisherService(IPublisherRepository repository, IMapper mapper, IHashids hashIds) : base(repository, mapper, hashIds)
         {
         }
     }

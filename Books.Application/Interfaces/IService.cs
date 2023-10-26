@@ -11,8 +11,8 @@ namespace Books.Application.Interfaces
         Task<IEnumerable<SendDTO>> GetAllAsync();
         Task<SendDTO> GetByIdAsync(string id);
         Task<ICollection<SendDTO>> GetByNameAsync(string name, int quantity, int offset);
-        Task CreateAsync(ReceiveDTO dto);
-        Task UpdateAsync(ReceiveDTO dto);
-        Task RemoveAsync(ReceiveDTO dto);
+        Task<SendDTO> CreateAsync(ReceiveDTO dto);
+        Task<SendDTO> UpdateAsync(ReceiveDTO dto);
+        Task<SendDTO> RemoveAsync(string entityId);
     }
 }

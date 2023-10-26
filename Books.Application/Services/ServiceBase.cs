@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace Books.Application.Services
 {
@@ -14,16 +15,16 @@ namespace Books.Application.Services
     {
         protected R _repository;
         protected IMapper _mapper;
-        protected readonly IHashids _hashids;
+        protected readonly IHashids _hashIds;
 
-        public ServiceBase(R repository, IMapper mapper, IHashids hashids)
+        public ServiceBase(R repository, IMapper mapper, IHashids hashIds)
         {
             _repository = repository;
             _mapper = mapper;
-            _hashids = hashids;
+            _hashIds = hashIds;
         }
 
-        public async Task CreateAsync(ReceiveDTO dto)
+        public async Task<SendDTO> CreateAsync(ReceiveDTO dto)
         {
             var entity = _mapper.Map<T>(dto);
 
@@ -31,6 +32,8 @@ namespace Books.Application.Services
             {
                 await _repository.CreateAsync(entity);
             }
+
+            return _mapper.Map<SendDTO>(entity);
         }
 
         public async Task<IEnumerable<SendDTO>> GetAllAsync()
@@ -42,7 +45,7 @@ namespace Books.Application.Services
 
         public async Task<SendDTO> GetByIdAsync(string entityId)
         {
-            var id = _hashids.DecodeSingle(entityId);
+            var id = _hashIds.DecodeSingle(entityId);
             var entity = await _repository.GetByIdAsync(id);
           
             return _mapper.Map<SendDTO>(entity);
@@ -55,18 +58,19 @@ namespace Books.Application.Services
             return _mapper.Map<List<SendDTO>>(entities);
         }
 
-        public async Task RemoveAsync(ReceiveDTO dto)
+        public async Task<SendDTO> RemoveAsync(string entityId)
         {
-            var entity = _mapper.Map<T>(dto);
+            var id = _hashIds.DecodeSingle(entityId);
+            var entity = await _repository.GetByIdAsync(id);
 
-            await _repository.RemoveAsync(entity);
+            return _mapper.Map<SendDTO>(await _repository.RemoveAsync(entity));
         }
 
-        public async Task UpdateAsync(ReceiveDTO dto)
+        public async Task<SendDTO> UpdateAsync(ReceiveDTO dto)
         {
             var entity = _mapper.Map<T>(dto);
 
-            await _repository.UpdateAsync(entity);
+            return _mapper.Map<SendDTO>(await _repository.UpdateAsync(entity));
         }
     }
 }

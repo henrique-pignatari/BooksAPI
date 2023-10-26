@@ -21,7 +21,7 @@ namespace Books.Application.Services
 
         public async Task<bool> ConcludeReadingAsync(string bookId)
         {
-            var id = _hashids.DecodeSingle(bookId);
+            var id = _hashIds.DecodeSingle(bookId);
             var entity = await _repository.GetByIdAsync(id);
 
             return entity != null;
@@ -29,7 +29,7 @@ namespace Books.Application.Services
 
         public async Task<bool> FullRestartReadingAsync(string bookId)
         {
-            var id = _hashids.DecodeSingle(bookId);
+            var id = _hashIds.DecodeSingle(bookId);
             var book = await _repository.GetByIdAsync(id);
 
             if(book != null)
@@ -44,7 +44,7 @@ namespace Books.Application.Services
 
         public async Task<IEnumerable<BookSendDTO>> GetByAuthorAsync(string authorId, int quantity, int offset)
         {
-            var id = _hashids.DecodeSingle(authorId);
+            var id = _hashIds.DecodeSingle(authorId);
             var entities = await _repository.GetByAuthorAsync(id, quantity, offset);
             
             return _mapper.Map<List<BookSendDTO>>(entities);
@@ -52,7 +52,7 @@ namespace Books.Application.Services
 
         public async Task<IEnumerable<BookSendDTO>> GetByCategoryAsync(string categoryId, int quantity, int offset)
         {
-            var id = _hashids.DecodeSingle(categoryId);
+            var id = _hashIds.DecodeSingle(categoryId);
             var entities = await _repository.GetByCategoryAsync(id, quantity, offset);
 
             return _mapper.Map<List<BookSendDTO>>(entities);
@@ -60,7 +60,7 @@ namespace Books.Application.Services
 
         public async Task<IEnumerable<BookSendDTO>> GetByGenreAsync(string genreId, int quantity, int offset)
         {
-            var id = _hashids.DecodeSingle(genreId);
+            var id = _hashIds.DecodeSingle(genreId);
             var entities = await _repository.GetByGenreAsync(id, quantity, offset);
 
             return _mapper.Map<List<BookSendDTO>>(entities);
@@ -68,7 +68,7 @@ namespace Books.Application.Services
 
         public async Task<bool> PartialRestartReadingAsync(string bookId)
         {
-            var id = _hashids.DecodeSingle(bookId);
+            var id = _hashIds.DecodeSingle(bookId);
             var book = await _repository.GetByIdAsync(id);
 
             if(book != null)
@@ -82,7 +82,7 @@ namespace Books.Application.Services
 
         public async Task<bool> StartReadingAsync(string bookId)
         {
-            var id = _hashids.DecodeSingle(bookId);
+            var id = _hashIds.DecodeSingle(bookId);
             var book = await _repository.GetByIdAsync(id);
 
             if(book != null)
@@ -96,7 +96,7 @@ namespace Books.Application.Services
 
         public async Task<bool> StopReadingAsync(string bookId)
         {
-            var id = _hashids.DecodeSingle(bookId);
+            var id = _hashIds.DecodeSingle(bookId);
             var book = await _repository.GetByIdAsync(id);
 
             if (book != null)
