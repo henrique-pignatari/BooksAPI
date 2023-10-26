@@ -66,7 +66,7 @@ namespace Books.Application.Services
             return _mapper.Map<SendDTO>(await _repository.RemoveAsync(entity));
         }
 
-        public async Task<SendDTO> UpdateAsync(ReceiveDTO dto)
+        public async Task<SendDTO> UpdateAsync(SendDTO dto)
         {
             var entity = _mapper.Map<T>(dto);
 

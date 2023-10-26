@@ -12,7 +12,7 @@ namespace Books.Application.Interfaces
         Task<SendDTO> GetByIdAsync(string id);
         Task<ICollection<SendDTO>> GetByNameAsync(string name, int quantity, int offset);
         Task<SendDTO> CreateAsync(ReceiveDTO dto);
-        Task<SendDTO> UpdateAsync(ReceiveDTO dto);
+        Task<SendDTO> UpdateAsync(SendDTO dto);
         Task<SendDTO> RemoveAsync(string entityId);
     }
 }

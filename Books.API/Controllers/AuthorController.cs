@@ -58,7 +58,7 @@ namespace Books.API.Controllers
         }
 
         [HttpPut]
-        public async Task<ActionResult> Put([FromBody] AuthorReceiveDTO authorReceiveDTO)
+        public async Task<ActionResult> Put([FromBody] AuthorSendDTO authorReceiveDTO)
         {
             if (authorReceiveDTO == null) return BadRequest();
 

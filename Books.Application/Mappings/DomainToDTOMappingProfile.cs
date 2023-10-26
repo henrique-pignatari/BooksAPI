@@ -17,27 +17,42 @@ namespace Books.Application.Mappings
             CreateMap<Book, BookSendDTO>()
                 .ForMember(dest => dest.Id, opt => opt.ConvertUsing<HashFormatter, int>());
 
+            CreateMap<BookSendDTO, Book>()
+                .ForMember(dest => dest.Id, opt => opt.ConvertUsing<IntFromHash, string>());
+
             CreateMap<BookReceiveDTO, Book>()
-                .ForMember(d => d.CategoryId, opt => opt.ConvertUsing<IntFromHash, string>())
-                .ForMember(d => d.PublisherId, opt => opt.ConvertUsing<IntFromHash, string>());
+                .ForMember(dest => dest.CategoryId, opt => opt.ConvertUsing<IntFromHash, string>())
+                .ForMember(dest => dest.PublisherId, opt => opt.ConvertUsing<IntFromHash, string>());
 
             CreateMap<Author, AuthorSendDTO>()
                 .ForMember(dest => dest.Id, opt => opt.ConvertUsing<HashFormatter, int>());
+
+            CreateMap<AuthorSendDTO, Author>()
+                .ForMember(dest => dest.Id, opt => opt.ConvertUsing<IntFromHash, string>());
 
             CreateMap<AuthorReceiveDTO, Author>();
 
             CreateMap<Category, CategorySendDTO>()
                 .ForMember(dest => dest.Id, opt => opt.ConvertUsing<HashFormatter, int>());
 
+            CreateMap<CategorySendDTO, Category>()
+                .ForMember(dest => dest.Id, opt => opt.ConvertUsing<IntFromHash, string>());
+
             CreateMap<CategoryReceiveDTO, Category>();
 
             CreateMap<Genre, GenreSendDTO>()
                 .ForMember(dest => dest.Id, opt => opt.ConvertUsing<HashFormatter, int>());
 
+            CreateMap<GenreSendDTO, Genre>()
+                .ForMember(dest => dest.Id, opt => opt.ConvertUsing<IntFromHash, string>());
+
             CreateMap<GenreReceiveDTO, Genre>();
 
             CreateMap<Publisher, PublisherSendDTO>()
                 .ForMember(dest => dest.Id, opt => opt.ConvertUsing<HashFormatter, int>());
+
+            CreateMap<PublisherSendDTO, Publisher>()
+                .ForMember(dest => dest.Id, opt => opt.ConvertUsing<IntFromHash, string>());
 
             CreateMap<PublisherReceiveDTO, Publisher>();
         }
