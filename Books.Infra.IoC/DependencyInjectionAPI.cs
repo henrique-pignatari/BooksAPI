@@ -1,4 +1,6 @@
-﻿using Books.Application.Mappings;
+﻿using Books.Application.Interfaces;
+using Books.Application.Mappings;
+using Books.Application.Services;
 using Books.Domain.Interfaces;
 using Books.Infra.Data.Context;
 using Books.Infra.Data.Repositories;
@@ -35,6 +37,12 @@ namespace Books.Infra.IoC
             services.AddScoped<ICategoryRepository, CategoryRepository>();
             services.AddScoped<IGenreRepository, GenreRepository>();
             services.AddScoped<IPublisherRepository, PublisherRepository>();
+
+            services.AddScoped<IAuthorService, AuthorService>();
+            services.AddScoped<IBookService, BookService>();
+            services.AddScoped<ICategoryService, CategoryService>();
+            services.AddScoped<IGenreService, GenreService>();
+            services.AddScoped<IPublisherService, PublisherService>();
 
             return services;
         }

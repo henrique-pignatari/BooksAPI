@@ -1,4 +1,6 @@
-﻿using Books.Domain.Entities;
+﻿using Books.Application.DTOs.ReceiveDTOs;
+using Books.Application.DTOs.SendDTOs;
+using Books.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Books.Application.Interfaces
 {
-    public interface ICategoryService : IService<Category>
+    public interface ICategoryService : IService<CategorySendDTO, CategoryReceiveDTO>
     {
     }
 }

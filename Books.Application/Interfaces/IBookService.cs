@@ -1,4 +1,6 @@
-﻿using Books.Domain.Entities;
+﻿using Books.Application.DTOs.ReceiveDTOs;
+using Books.Application.DTOs.SendDTOs;
+using Books.Domain.Entities;
 using Books.Domain.Enums;
 using System;
 using System.Collections.Generic;
@@ -8,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Books.Application.Interfaces
 {
-    public interface IBookService : IService<Book>
+    public interface IBookService : IService<BooksSendDTO, BookReceiveDTO>
     {
         Task<IEnumerable<Book>> GetByAuthorAsync(int authorId, int quantity, int offset);
         Task<IEnumerable<Book>> GetByGenreAsync(int genreId, int quantity, int offset);

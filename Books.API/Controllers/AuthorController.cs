@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Books.Domain.Interfaces;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Books.API.Controllers
@@ -7,5 +8,11 @@ namespace Books.API.Controllers
     [ApiController]
     public class AuthorController : ControllerBase
     {
+        private readonly IAuthorRepository _authorRepository;
+
+        public AuthorController(IAuthorRepository authorRepository)
+        {
+            _authorRepository = authorRepository;
+        }
     }
 }
