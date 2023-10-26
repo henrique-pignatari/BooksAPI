@@ -8,8 +8,8 @@ namespace Books.Application.Interfaces
 {
     public interface IService<SendDTO, ReceiveDTO>
     {
-        Task<IEnumerable<SendDTO>> GetAll();
-        Task<SendDTO> GetByIdAsync(int id);
+        Task<IEnumerable<SendDTO>> GetAllAsync();
+        Task<SendDTO> GetByIdAsync(string id);
         Task<ICollection<SendDTO>> GetByNameAsync(string name, int quantity, int offset);
         Task CreateAsync(ReceiveDTO dto);
         Task UpdateAsync(ReceiveDTO dto);

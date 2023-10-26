@@ -14,7 +14,7 @@ namespace Books.Application.Mappings
     {
         public DomainToDTOMappingProfile()
         {
-            CreateMap<Book, BooksSendDTO>()
+            CreateMap<Book, BookSendDTO>()
                 .ForMember(dest => dest.Id, opt => opt.ConvertUsing<HashFormatter, int>());
 
             CreateMap<BookReceiveDTO, Book>()

@@ -10,15 +10,15 @@ using System.Threading.Tasks;
 
 namespace Books.Application.Interfaces
 {
-    public interface IBookService : IService<BooksSendDTO, BookReceiveDTO>
+    public interface IBookService : IService<BookSendDTO, BookReceiveDTO>
     {
-        Task<IEnumerable<Book>> GetByAuthorAsync(int authorId, int quantity, int offset);
-        Task<IEnumerable<Book>> GetByGenreAsync(int genreId, int quantity, int offset);
-        Task<IEnumerable<Book>> GetByCategoryAsync(int categoryId, int quantity, int offset);
-        Task<bool> StartReadingAsync(int bookId);
-        Task<bool> StopReadingAsync(int bookId);
-        Task<bool> PartialRestartReadingAsync(int bookId);
-        Task<bool> FullRestartReadingAsync(int bookId);
-        Task<bool> ConcludeReadingAsync(int bookId);
+        Task<IEnumerable<BookSendDTO>> GetByAuthorAsync(string authorId, int quantity, int offset);
+        Task<IEnumerable<BookSendDTO>> GetByGenreAsync(string genreId, int quantity, int offset);
+        Task<IEnumerable<BookSendDTO>> GetByCategoryAsync(string categoryId, int quantity, int offset);
+        Task<bool> StartReadingAsync(string bookId);
+        Task<bool> StopReadingAsync(string bookId);
+        Task<bool> PartialRestartReadingAsync(string bookId);
+        Task<bool> FullRestartReadingAsync(string bookId);
+        Task<bool> ConcludeReadingAsync(string bookId);
     }
 }
