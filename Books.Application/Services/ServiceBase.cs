@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Books.Application.Interfaces;
 using Books.Domain.Interfaces;
+using HashidsNet;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,11 +14,13 @@ namespace Books.Application.Services
     {
         protected R _repository;
         protected IMapper _mapper;
+        protected readonly IHashids _hashids;
 
-        public ServiceBase(R repository, IMapper mapper)
+        public ServiceBase(R repository, IMapper mapper, IHashids hashids)
         {
             _repository = repository;
             _mapper = mapper;
+            _hashids = hashids;
         }
 
         public async Task CreateAsync(ReceiveDTO dto)
@@ -30,15 +33,16 @@ namespace Books.Application.Services
             }
         }
 
-        public async Task<IEnumerable<SendDTO>> GetAll()
+        public async Task<IEnumerable<SendDTO>> GetAllAsync()
         {
-            var entities =_repository.GetAll();
+            var entities = await _repository.GetAllAsync();
 
             return _mapper.Map<List<SendDTO>>(entities);
         }
 
-        public async Task<SendDTO> GetByIdAsync(int id)
+        public async Task<SendDTO> GetByIdAsync(string entityId)
         {
+            var id = _hashids.DecodeSingle(entityId);
             var entity = await _repository.GetByIdAsync(id);
           
             return _mapper.Map<SendDTO>(entity);
