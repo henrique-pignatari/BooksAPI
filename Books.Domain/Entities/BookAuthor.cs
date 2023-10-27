@@ -15,6 +15,11 @@ namespace Books.Domain.Entities
         public int AuthorId { get; set; }
         public Author Author { get; set; }
 
+        public BookAuthor()
+        {
+            
+        }
+
         public BookAuthor(int bookId, int authorId)
         {
             BookAuthorValidation.ValidateBookId(bookId);

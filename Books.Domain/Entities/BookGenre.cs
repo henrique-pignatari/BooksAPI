@@ -15,6 +15,10 @@ namespace Books.Domain.Entities
         public int GenreId { get; set; }
         public Genre Genre { get; set; }
 
+        public BookGenre()
+        {
+            
+        }
         public BookGenre(int bookId, int genreId)
         {
             BookGenreValidation.ValidateBookId(bookId);
