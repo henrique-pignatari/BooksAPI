@@ -27,13 +27,13 @@ namespace Books.Infra.Data.EntitiesConfiguration
                 .HasColumnType("integer");
 
             builder.Property(b => b.ReadStartDate)
-                .HasColumnType("Date");
+                .HasColumnType("timestamp");
 
             builder.Property(b => b.ReadStopDate)
-                .HasColumnType("Date");
+                .HasColumnType("timestamp");
 
             builder.Property(b => b.ReadConclusionDate)
-                .HasColumnType("Date");
+                .HasColumnType("timestamp");
 
             builder.HasOne(b => b.Publisher)
                 .WithMany(p => p.Books)

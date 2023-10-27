@@ -14,9 +14,31 @@ namespace Books.Infra.Data.Repositories
     {
         public BookRepository(ApplicationDbContext context) : base(context) { }
 
+        public new async Task<IEnumerable<Book>> GetAllAsync()
+        {
+            return await _context.Books
+                .Include(b => b.Publisher)
+                .Include(b => b.Category)
+                .Include(b => b.Genres)
+                .Include(b => b.Authors)
+                .ToListAsync();
+        }
+
+        public new async Task<Book> GetByIdAsync(int id)
+        {
+            return await _context.Books
+                .Include(b => b.Publisher)
+                .Include(b => b.Category)
+                .Include(b => b.Genres)
+                .Include(b => b.Authors)
+                .FirstOrDefaultAsync(b => b.Id == id);
+        }
+
         public async Task<IEnumerable<Book>> GetByAuthorAsync(int authorId, int quantity, int offset)
         {
-            var author = await _context.Authors.FindAsync(authorId);
+            var author = await _context.Authors
+                .Include(a => a.Books)
+                .FirstOrDefaultAsync(a => a.Id == authorId);
             
             if(author != null) 
                 return author.Books
@@ -37,7 +59,9 @@ namespace Books.Infra.Data.Repositories
 
         public async Task<IEnumerable<Book>> GetByGenreAsync(int genreId, int quantity, int offset)
         {
-            var genre = await _context.Genres.FindAsync(genreId);
+            var genre = await _context.Genres
+                .Include(g => g.Books)
+                .FirstOrDefaultAsync(g => g.Id == genreId);
             
             if(genre != null) 
                 return genre.Books

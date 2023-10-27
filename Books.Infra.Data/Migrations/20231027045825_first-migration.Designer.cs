@@ -12,8 +12,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Books.Infra.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20231020045104_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20231027045825_first-migration")]
+    partial class firstmigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -73,25 +73,25 @@ namespace Books.Infra.Data.Migrations
                     b.Property<DateTime>("LastUpdateDate")
                         .HasColumnType("timestamp with time zone");
 
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(250)
+                        .HasColumnType("character varying(250)");
+
                     b.Property<int>("PublisherId")
                         .HasColumnType("integer");
 
                     b.Property<DateTime?>("ReadConclusionDate")
-                        .HasColumnType("Date");
+                        .HasColumnType("timestamp");
 
                     b.Property<DateTime?>("ReadStartDate")
-                        .HasColumnType("Date");
+                        .HasColumnType("timestamp");
 
                     b.Property<int>("ReadStatus")
                         .HasColumnType("integer");
 
                     b.Property<DateTime?>("ReadStopDate")
-                        .HasColumnType("Date");
-
-                    b.Property<string>("Title")
-                        .IsRequired()
-                        .HasMaxLength(250)
-                        .HasColumnType("character varying(250)");
+                        .HasColumnType("timestamp");
 
                     b.Property<int?>("TotalPages")
                         .HasColumnType("integer");
@@ -224,7 +224,7 @@ namespace Books.Infra.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Publisher");
+                    b.ToTable("Publishers", (string)null);
                 });
 
             modelBuilder.Entity("Books.Domain.Entities.Book", b =>

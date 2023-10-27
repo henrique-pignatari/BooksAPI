@@ -31,37 +31,32 @@ namespace Books.Domain.Entities
         public ICollection<Author> Authors { get; private set; }
         public ICollection<BookAuthor> BookAuthors { get; private set; }
 
-        public Book(string name, int publisherId, int categoryId)
-            : this(name, publisherId, categoryId, null, null, null) { }
-
-        public Book(string name, int publisherId, int categoryId, string? description, int? totalPages, string? image)
+        public Book(string name, string? description, int? totalPages, string? image)
             : base()
         {
-            ValidateDomain(name, publisherId, categoryId, description, totalPages, image);
+            ValidateDomain(name, description, totalPages, image);
 
             Name = name;
             Description = description;
             TotalPages = totalPages;
             Image = image;
             ReadStatus = ReadStatus.Pending;
-            PublisherId = publisherId;
-            CategoryId = categoryId;
+            Genres = new List<Genre>();
+            Authors = new List<Author>();
         }
 
-        private void ValidateDomain(string name, int publisherId, int categoryId, string? description, int? totalPages, string? image)
+        private void ValidateDomain(string name, string? description, int? totalPages, string? image)
         {
             BookValidation.ValidateName(name);
             BookValidation.ValidateDescription(description);
             BookValidation.ValidateTotalPages(totalPages);
             BookValidation.ValidateImage(image);
-            BookValidation.ValidatePublisherId(publisherId);
-            BookValidation.ValidateCategoryId(categoryId);
         }
 
         public void StartReading()
         {
             ReadStatus = ReadStatus.InProgress;
-            ReadStartDate = DateTime.UtcNow;
+            ReadStartDate = DateTime.Now;
             ReadStopDate = null;
             ReadConclusionDate = null;
         }
@@ -69,7 +64,7 @@ namespace Books.Domain.Entities
         public void StopReading()
         {
             ReadStatus = ReadStatus.Pending;
-            ReadStopDate = DateTime.UtcNow;
+            ReadStopDate = DateTime.Now;
             ReadConclusionDate = null;
         }
 
@@ -89,15 +84,16 @@ namespace Books.Domain.Entities
         public void ConcludeReading()
         {
             ReadStatus = ReadStatus.Finished;
-            ReadConclusionDate = DateTime.UtcNow;
+            ReadConclusionDate = DateTime.Now;
             ReadStopDate = null;
         }
 
         public void Update(string name, int publisherId, int categoryId, ICollection<BookAuthor> authors, ICollection<BookGenre> genres, string? description, int? totalPages, string? image)
         {
-            ValidateDomain(name, publisherId, categoryId, description, totalPages, image);
+            ValidateDomain(name, description, totalPages, image);
             BookValidation.ValidateBookAuthors(authors);
-            BookValidation.ValidateBookGenres(genres);
+            BookValidation.ValidatePublisherId(publisherId);
+            BookValidation.ValidateCategoryId(categoryId);
 
             Name = name;
             Description = description;

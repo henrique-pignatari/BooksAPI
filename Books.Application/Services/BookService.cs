@@ -17,14 +17,48 @@ namespace Books.Application.Services
 {
     public class BookService : ServiceBase<Book, IBookRepository, BookSendDTO, BookReceiveDTO>, IBookService
     {
-        public BookService(IBookRepository bookRepository, IMapper mapper, IHashids hashIds) : base(bookRepository, mapper, hashIds) { }
+        private readonly IGenreRepository _genreRepository;
+        private readonly IAuthorRepository _authorRepository;
+        public BookService(IBookRepository bookRepository, IGenreRepository genreRepository, IAuthorRepository authorRepository, IMapper mapper, IHashids hashIds) 
+            : base(bookRepository, mapper, hashIds)
+        {
+            _genreRepository = genreRepository;
+            _authorRepository = authorRepository;
+        }
+
+        public new async Task<BookSendDTO> CreateAsync(BookReceiveDTO dto)
+        {
+            var book = _mapper.Map<Book>(dto);
+            
+            foreach(var genreId in dto.GenresIds.ToList())
+            {
+                int id = _hashIds.DecodeSingle(genreId);
+                var genre = await _genreRepository.GetByIdAsync(id);
+                book.Genres.Add(genre);
+            }
+
+            foreach(var authorId in dto.AuthorsIds.ToList())
+            {
+                int id = _hashIds.DecodeSingle(authorId);
+                var author = await _authorRepository.GetByIdAsync(id);
+                book.Authors.Add(author);
+            }
+
+            return _mapper.Map<BookSendDTO>(await _repository.CreateAsync(book));
+        }
 
         public async Task<bool> ConcludeReadingAsync(string bookId)
         {
             var id = _hashIds.DecodeSingle(bookId);
-            var entity = await _repository.GetByIdAsync(id);
+            var book = await _repository.GetByIdAsync(id);
 
-            return entity != null;
+            if(book != null)
+            {
+                book.ConcludeReading();
+                return await _repository.UpdateAsync(book) != null;
+            }
+
+            return false;
         }
 
         public async Task<bool> FullRestartReadingAsync(string bookId)

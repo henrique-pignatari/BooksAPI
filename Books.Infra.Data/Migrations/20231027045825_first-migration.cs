@@ -7,7 +7,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Books.Infra.Data.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialCreate : Migration
+    public partial class firstmigration : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -58,7 +58,7 @@ namespace Books.Infra.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Publisher",
+                name: "Publishers",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "integer", nullable: false)
@@ -70,7 +70,7 @@ namespace Books.Infra.Data.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Publisher", x => x.Id);
+                    table.PrimaryKey("PK_Publishers", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -79,14 +79,14 @@ namespace Books.Infra.Data.Migrations
                 {
                     Id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    Title = table.Column<string>(type: "character varying(250)", maxLength: 250, nullable: false),
+                    Name = table.Column<string>(type: "character varying(250)", maxLength: 250, nullable: false),
                     Description = table.Column<string>(type: "character varying(250)", maxLength: 250, nullable: true),
                     TotalPages = table.Column<int>(type: "integer", nullable: true),
                     Image = table.Column<string>(type: "text", nullable: true),
                     ReadStatus = table.Column<int>(type: "integer", nullable: false),
-                    ReadStartDate = table.Column<DateTime>(type: "Date", nullable: true),
-                    ReadStopDate = table.Column<DateTime>(type: "Date", nullable: true),
-                    ReadConclusionDate = table.Column<DateTime>(type: "Date", nullable: true),
+                    ReadStartDate = table.Column<DateTime>(type: "timestamp", nullable: true),
+                    ReadStopDate = table.Column<DateTime>(type: "timestamp", nullable: true),
+                    ReadConclusionDate = table.Column<DateTime>(type: "timestamp", nullable: true),
                     PublisherId = table.Column<int>(type: "integer", nullable: false),
                     CategoryId = table.Column<int>(type: "integer", nullable: false),
                     CreateDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
@@ -102,9 +102,9 @@ namespace Books.Infra.Data.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Books_Publisher_PublisherId",
+                        name: "FK_Books_Publishers_PublisherId",
                         column: x => x.PublisherId,
-                        principalTable: "Publisher",
+                        principalTable: "Publishers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -214,7 +214,7 @@ namespace Books.Infra.Data.Migrations
                 name: "Categories");
 
             migrationBuilder.DropTable(
-                name: "Publisher");
+                name: "Publishers");
         }
     }
 }
