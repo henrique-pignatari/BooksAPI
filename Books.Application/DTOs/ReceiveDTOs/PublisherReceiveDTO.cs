@@ -19,6 +19,6 @@ namespace Books.Application.DTOs.ReceiveDTOs
 
         [MaxLength(PublisherConstraints.MaxLogoLength)]
         [DisplayName("Logo")]
-        public string Logo { get; set; }
+        public string? Logo { get; set; }
     }
 }

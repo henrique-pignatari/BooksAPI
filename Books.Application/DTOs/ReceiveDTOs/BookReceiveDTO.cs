@@ -22,28 +22,28 @@ namespace Books.Application.DTOs.ReceiveDTOs
         [MinLength(BookConstraints.MinDescriptionLength)]
         [MaxLength(BookConstraints.MaxDescriptionLength)]
         [DisplayName("Description")]
-        public string Description { get; set; }
+        public string? Description { get; set; }
 
         [DisplayName("Pages")]
-        public int TotalPages { get; set; }
+        public int? TotalPages { get; set; }
 
         [MaxLength(BookConstraints.MaxImageLength)]
         [DisplayName("Image")]
-        public string Image { get; set; }
+        public string? Image { get; set; }
+
+        [DisplayName("PublisherId")]
+        public string PublisherId { get; set; }
+
+        [DisplayName("CategoryId")]
+        public string CategoryId { get; set; }
 
         [DisplayName("ReadStatus")]
         public int ReadStatus { get; set; }
 
-        [DisplayName("PublisherId")]
-        public string PublisherId { get; private set; }
-
-        [DisplayName("CategoryId")]
-        public string CategoryId { get; private set; }
-
         [DisplayName("GenresIds")]
-        public ICollection<string> GenresIds { get; private set; }
+        public ICollection<string> GenresIds { get; set; }
 
         [DisplayName("AuthorsIds")]
-        public ICollection<string> AuthorsIds { get; private set; }
+        public ICollection<string> AuthorsIds { get; set; }
     }
 }

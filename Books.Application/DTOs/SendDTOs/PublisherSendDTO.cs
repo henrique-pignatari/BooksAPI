@@ -20,5 +20,9 @@ namespace Books.Application.DTOs.SendDTOs
         [MaxLength(PublisherConstraints.MaxNameLength)]
         [DisplayName("Title")]
         public string Name { get; set; }
+
+        [MaxLength(PublisherConstraints.MaxLogoLength)]
+        [DisplayName("Logo")]
+        public string? Logo { get; set; }
     }
 }

@@ -52,15 +52,15 @@ namespace Books.Application.DTOs.SendDTOs
         public DateTime? ReadConclusionDate { get; set; }
 
         [DisplayName("Publisher")]
-        public Publisher Publisher { get; private set; }
+        public PublisherSendDTO Publisher { get; private set; }
 
         [DisplayName("Category")]
-        public Category Category { get; private set; }
+        public CategorySendDTO Category { get; private set; }
 
         [DisplayName("Genres")]
-        public ICollection<Genre> Genres { get; private set; }
+        public ICollection<GenreSendDTO> Genres { get; private set; }
 
         [DisplayName("Authors")]
-        public ICollection<Author> Authors { get; private set; }
+        public ICollection<AuthorSendDTO> Authors { get; private set; }
     }
 }
