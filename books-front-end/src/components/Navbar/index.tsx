@@ -9,7 +9,6 @@ const Navbar = () => {
     <nav className={styles.container}>
       <ul className={styles.linkList}>
         {routes.map((route, index) => {
-          console.log({ route });
           return (
             <li key={index}>
               <Link className={`${styles.link} ${styles[`link-${route.color}`]}`} href={route.link}>
