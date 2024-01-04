@@ -1,27 +1,27 @@
 const routes = [
   {
     title: "Livros",
-    link: "books",
+    link: "/books",
     color: "green",
   },
   {
     title: "Autores",
-    link: "authors",
+    link: "/authors",
     color: "blue",
   },
   {
     title: "Editoras",
-    link: "publishers",
+    link: "/publishers",
     color: "red",
   },
   {
     title: "Generos",
-    link: "genres",
+    link: "/genres",
     color: "yellow",
   },
   {
     title: "Categorias",
-    link: "categories",
+    link: "/categories",
     color: "purple",
   },
 ];
