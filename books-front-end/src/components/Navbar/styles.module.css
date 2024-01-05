@@ -1,6 +1,7 @@
 .container {
   display: flex;
   justify-content: center;
+  padding: 32px 0;
 }
 
 .linkList {
@@ -8,30 +9,33 @@
   flex-direction: row;
   gap: 32px;
   list-style: none;
-  padding: 32px 0;
 }
 
 .link {
-  padding: 8px;
-  border-radius: 4px;
+  font-size: 30px;
+  font-weight: bold;
+  padding: 4px 16px;
+  border-radius: 8px;
+  background-color: #404040;
+  transition: all ease-in 250ms;
 }
 
-.link-green {
+.link-green:hover {
   background-color: rgb(126, 223, 126);
 }
 
-.link-blue {
+.link-blue:hover {
   background-color: rgb(99, 135, 227);
 }
 
-.link-red {
+.link-red:hover {
   background-color: rgb(220, 116, 116);
 }
 
-.link-yellow {
-  background-color: rgb(245, 245, 105);
+.link-yellow:hover {
+  background-color: rgb(212, 212, 73);
 }
 
-.link-purple {
+.link-purple:hover {
   background-color: rgb(233, 92, 233);
 }
