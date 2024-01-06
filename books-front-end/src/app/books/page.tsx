@@ -1,4 +1,4 @@
-import ListContainer from "@/components/ListContainer";
+import ListContainer from "@/components/List/ListContainer";
 
 const Books = () => {
   return (
