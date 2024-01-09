@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import styles from "./styles.module.css";
+import styles from "./styles.module.scss";
 import { usePathname } from "next/navigation";
 import { ReactNode } from "react";
 import Image from "next/image";
