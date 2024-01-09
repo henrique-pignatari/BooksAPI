@@ -15,3 +15,40 @@
   background-color: green;
   color: white;
 }
+
+.listContainer {
+  border: 2px solid white;
+  border-radius: 8px;
+  margin-top: 2rem;
+}
+
+.listHeader {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  border-bottom: 2px solid white;
+  padding: 8px 16px;
+}
+
+.paginationWrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-left: auto;
+}
+
+.paginationButton {
+  display: flex;
+  width: max-content;
+  background-color: transparent;
+  border: none;
+}
+
+.paginationButton img {
+  width: 28px;
+  height: 28px;
+}
+
+.arrowLeft {
+  transform: rotate(180deg);
+}
