@@ -1,3 +1,5 @@
+@use "../../global/styles/colors/variables" as colors;
+
 .container {
   display: flex;
   justify-content: center;
@@ -20,26 +22,26 @@
   font-weight: bold;
   padding: 4px 16px;
   border-radius: 8px;
-  background-color: #404040;
+  background-color: var(--contrast-background);
   transition: all ease-in 250ms;
 }
 
 .link-green:hover {
-  background-color: rgb(126, 223, 126);
+  background-color: colors.$green-500;
 }
 
 .link-blue:hover {
-  background-color: rgb(99, 135, 227);
+  background-color: colors.$blue-500;
 }
 
 .link-red:hover {
-  background-color: rgb(220, 116, 116);
+  background-color: colors.$red-500;
 }
 
 .link-yellow:hover {
-  background-color: rgb(212, 212, 73);
+  background-color: colors.$yellow-500;
 }
 
 .link-purple:hover {
-  background-color: rgb(233, 92, 233);
+  background-color: colors.$purple-500;
 }
