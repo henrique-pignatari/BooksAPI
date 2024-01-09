@@ -1,16 +1,22 @@
+@use "../global/styles/colors/variables" as var;
+
 :root {
-  --white: whitesmoke;
-  --black: black;
-  --background: whitesmoke;
+  --background: #{var.$white-200};
+  --text-main: #{var.$black-800};
+  --border-main: #{var.$black-800};
+  --contrast-background: #{var.$black-100};
   
   &.dark {
-    --background: #252525;
+    --background: #{var.$black-400};
+    --text-main: #{var.$white-200};
+    --border-main: #{var.$white-200};
+    --contrast-background: #{var.$black-600};
   }
 }
 
 * {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  color: var(--white);
+  color: var(--text-main);
   box-sizing: border-box;
   padding: 0;
   margin: 0;
