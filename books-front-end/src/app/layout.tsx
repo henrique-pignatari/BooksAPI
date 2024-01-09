@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
-import "./globals.css";
+import "./globals.scss";
 import Navbar from "@/components/Navbar";
+import { useState } from "react";
+import DarkModeButton from "@/components/DarkModeButton";
 
 export const metadata: Metadata = {
   title: "Livros",
@@ -13,6 +15,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body>
         <header>
           <Navbar />
+          <DarkModeButton/>
         </header>
         <main>{children}</main>
       </body>

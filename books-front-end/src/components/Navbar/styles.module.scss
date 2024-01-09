@@ -11,6 +11,10 @@
   list-style: none;
 }
 
+.linkList li {
+  display: flex;
+}
+
 .link {
   font-size: 30px;
   font-weight: bold;
