@@ -7,6 +7,8 @@ import { ReactNode } from "react";
 import Image from "next/image";
 import singleArrow from "../../../assets/single-arrow.svg";
 import doubleArrow from "../../../assets/double-arrow.svg";
+import { FiChevronLeft, FiChevronRight, FiChevronsLeft, FiChevronsRight } from "react-icons/fi";
+import { IconContext } from "react-icons";
 
 type Props = {
   title: string;
@@ -25,19 +27,21 @@ const ListContainer = ({ title, children }: Props) => {
       <div className={styles.listContainer}>
         <div className={styles.listHeader}>
           <div className={styles.paginationWrapper}>
-            <button className={`${styles.paginationButton} ${styles.arrowLeft}`}>
-              <Image src={singleArrow} alt="" />
-            </button>
-            <button className={`${styles.paginationButton} ${styles.arrowLeft}`}>
-              <Image src={doubleArrow} alt="" />
-            </button>
+            <IconContext.Provider value={{className: styles.icons}}>
+              <button className={`${styles.paginationButton}`}>
+                <FiChevronsLeft />
+              </button>
+              <button className={`${styles.paginationButton}`}>
+                <FiChevronLeft />
+              </button>
 
-            <button className={`${styles.paginationButton} ${styles.arrowRight}`}>
-              <Image src={doubleArrow} alt="" />
-            </button>
-            <button className={`${styles.paginationButton} ${styles.arrowRight}`}>
-              <Image src={singleArrow} alt="" />
-            </button>
+              <button className={`${styles.paginationButton}`}>
+                <FiChevronRight />
+              </button>
+              <button className={`${styles.paginationButton}`}>
+                <FiChevronsRight />
+              </button>
+            </IconContext.Provider>
           </div>
         </div>
         {children}

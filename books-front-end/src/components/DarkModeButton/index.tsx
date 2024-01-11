@@ -1,19 +1,24 @@
 "use client";
 import { useState } from "react";
+import styles from "./styles.module.scss"
+import { IconContext } from "react-icons";
+import { IoMoon, IoSunny } from "react-icons/io5";
 
-const DarkModeButton = () => {
-  const [isDarkMode, setIsDarkMode] = useState(false);
+const LightModeButton = () => {
+  const [isLightMode, setIsLightMode] = useState(false);
 
   const toggleTheme = () => {
-    setIsDarkMode(!isDarkMode);
-    document.documentElement.classList.toggle("dark");
+    setIsLightMode(!isLightMode);
+    document.documentElement.classList.toggle("light");
   };
 
   return (
-    <button className="toggleButton" onClick={toggleTheme}>
-      {isDarkMode ? <strong>DARK</strong> : <strong>LIGHT</strong>}
+    <button className={styles.toggleButton} onClick={toggleTheme}>
+      <IconContext.Provider value={{className: styles.icon}}>
+        {isLightMode ? <IoMoon /> : <IoSunny />}
+      </IconContext.Provider>
     </button>
   );
 };
 
-export default DarkModeButton;
+export default LightModeButton;

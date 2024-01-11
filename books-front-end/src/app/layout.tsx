@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.scss";
 import Navbar from "@/components/Navbar";
-import { useState } from "react";
 import DarkModeButton from "@/components/DarkModeButton";
 
 export const metadata: Metadata = {
