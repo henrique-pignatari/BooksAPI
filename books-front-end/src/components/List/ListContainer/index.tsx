@@ -4,9 +4,6 @@ import Link from "next/link";
 import styles from "./styles.module.scss";
 import { usePathname } from "next/navigation";
 import { ReactNode } from "react";
-import Image from "next/image";
-import singleArrow from "../../../assets/single-arrow.svg";
-import doubleArrow from "../../../assets/double-arrow.svg";
 import { FiChevronLeft, FiChevronRight, FiChevronsLeft, FiChevronsRight } from "react-icons/fi";
 import { IconContext } from "react-icons";
 
@@ -25,7 +22,9 @@ const ListContainer = ({ title, children }: Props) => {
         Novo
       </Link>
       <div className={styles.listContainer}>
+
         <div className={styles.listHeader}>
+
           <div className={styles.paginationWrapper}>
             <IconContext.Provider value={{className: styles.icons}}>
               <button className={`${styles.paginationButton}`}>
@@ -43,6 +42,7 @@ const ListContainer = ({ title, children }: Props) => {
               </button>
             </IconContext.Provider>
           </div>
+
         </div>
         {children}
       </div>
