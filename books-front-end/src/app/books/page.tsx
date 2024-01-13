@@ -1,12 +1,18 @@
+"use client"
 import ListContainer from "@/components/List/ListContainer";
+import { useBooksList } from "@/contexts/booksList";
+
+import styles from "./styles.module.scss"
 
 const Books = () => {
+  const {fetchList} = useBooksList()
+  
   return (
-    <div>
-      <ListContainer title="Livros">
-        <h1>Teste</h1>
-      </ListContainer>
-    </div>
+    <ListContainer title="Livros">
+      <button onClick={fetchList}>
+        FETCH
+      </button>
+    </ListContainer>
   );
 };
 

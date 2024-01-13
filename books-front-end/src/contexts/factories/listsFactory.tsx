@@ -1,28 +1,42 @@
 import { ReactNode, createContext, useState } from "react";
+import axios from 'axios';
 
 type ListContextData<T> = {
+  loading: boolean;
   list: Array<T>
-  addNew: (element: T) => void
+  fetchList: () => Promise<void>
 }
 
-export function createListContext<T>(){
-  return createContext<ListContextData<T>>({} as ListContextData<T>)
+type ListProviderFactoryProps = {
+  baseUrl: string;
 }
 
-function listProviderFactory<T>(){
-  const context = createListContext<T>();
+function listProviderFactory<T>({baseUrl}: ListProviderFactoryProps){
+  const context = createContext<ListContextData<T>>({} as ListContextData<T>);
   
   const ProviderElement = (children: ReactNode) => {
+    const [loading, setLoading] = useState(false);
     const [list, setList] = useState<Array<T>>([]);
 
-    const addNew = (element: T) => {
-      const proxyList = [...list]
-      proxyList.push(element)
-      setList(proxyList)
+    const fetchList = async () => {
+      axios.get(baseUrl)
+      .then((response)=>{
+        setLoading(false);
+        console.log({data: response.data});
+      })
+      .catch((err)=>{
+        console.log(err);
+      })
+
+      setLoading(true);
     }
 
     return(
-      <context.Provider value={{ list, addNew }}>
+      <context.Provider value={{
+        list,
+        fetchList,
+        loading,
+      }}>
         {children}
       </context.Provider>
     )
