@@ -7,19 +7,9 @@ type Book = {
   title: string;
 }
 
-type BooksProviderProps = {
-  children: ReactNode;
-}
-
-const {context, ProviderElement} = listProviderFactory<Book>({
+const {context, ProviderElement: BooksListProvider} = listProviderFactory<Book>({
   baseUrl: BOOKS_URL
 });
-
-const BooksListProvider = ({children}: BooksProviderProps) => {
-  return(
-    ProviderElement(children)
-  )
-}
 
 const useBooksList = () => {
   return useContext(context)
