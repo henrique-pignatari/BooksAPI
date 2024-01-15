@@ -11,9 +11,7 @@ const {context, ProviderElement: CategoriesListProvider} = listProviderFactory<C
   baseUrl: CATEGORIES_URL
 })
 
-const useCategoriesList = () => {
-  return useContext(context)
-}
+const useCategoriesList = () => useContext(context)
 
 export{
   useCategoriesList,

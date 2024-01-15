@@ -12,9 +12,7 @@ const {context, ProviderElement: AuthorsListProvider} = listProviderFactory<Auth
   baseUrl: AUTHORS_URL
 })
 
-const useAuthorsList = () => {
-  return useContext(context)
-}
+const useAuthorsList = () => useContext(context)
 
 export{
   useAuthorsList,
