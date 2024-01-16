@@ -2,19 +2,15 @@ import { CATEGORIES_URL } from "@/global/urls";
 import { listProviderFactory } from "./factories/listsFactory";
 import { useContext } from "react";
 
-type Category = {
-  id: string; 
+export type Category = {
+  id: string;
   name: string;
-}
+};
 
-const {context, ProviderElement: CategoriesListProvider} = listProviderFactory<Category>({
-  baseUrl: CATEGORIES_URL
-})
+const { context, ProviderElement: CategoriesListProvider } = listProviderFactory<Category>({
+  baseUrl: CATEGORIES_URL,
+});
 
-const useCategoriesList = () => useContext(context)
+const useCategoriesList = () => useContext(context);
 
-export{
-  useCategoriesList,
-  CategoriesListProvider
-}
-
+export { useCategoriesList, CategoriesListProvider };
