@@ -2,11 +2,7 @@
 import { useContext } from "react";
 import { listProviderFactory } from "./factories/listsFactory";
 import { AUTHORS_URL } from "@/global/urls";
-
-export type Author = {
-  id: string;
-  name: string;
-};
+import Author from "@/models/author";
 
 const { context, ProviderElement: AuthorsListProvider } = listProviderFactory<Author>({
   baseUrl: AUTHORS_URL,

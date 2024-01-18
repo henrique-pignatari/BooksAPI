@@ -1,11 +1,7 @@
 import { GENRE_URL } from "@/global/urls";
 import { listProviderFactory } from "./factories/listsFactory";
 import { useContext } from "react";
-
-export type Genre = {
-  id: string;
-  name: string;
-};
+import Genre from "@/models/genre";
 
 const { context, ProviderElement: GenresListProvider } = listProviderFactory<Genre>({
   baseUrl: GENRE_URL,
